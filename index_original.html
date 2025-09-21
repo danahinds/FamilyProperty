@@ -10,7 +10,7 @@
             margin: 20px;
             background-color: #f5f5f5;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -19,13 +19,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
+        
         h1 {
             color: #2c3e50;
             text-align: center;
             margin-bottom: 30px;
         }
-
+        
         .section {
             margin-bottom: 30px;
             border: 1px solid #e0e0e0;
@@ -33,14 +33,14 @@
             padding: 20px;
             background-color: #fafafa;
         }
-
+        
         .section h2 {
             color: #34495e;
             margin-top: 0;
             border-bottom: 2px solid #3498db;
             padding-bottom: 5px;
         }
-
+        
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -48,20 +48,20 @@
             margin-bottom: 15px;
             align-items: center;
         }
-
+        
         .full-width {
             grid-column: 1 / -1;
         }
-
+        
         .two-col {
             grid-column: span 2;
         }
-
+        
         label {
             font-weight: 600;
             color: #2c3e50;
         }
-
+        
         input[type="number"], input[type="text"], select {
             padding: 8px 12px;
             border: 2px solid #ddd;
@@ -69,41 +69,41 @@
             font-size: 14px;
             transition: border-color 0.3s ease;
         }
-
+        
         input[type="number"]:focus, input[type="text"]:focus, select:focus {
             border-color: #3498db;
             outline: none;
         }
-
+        
         .calculated {
             background-color: #ecf0f1;
             font-weight: bold;
             color: #2c3e50;
             border: 2px solid #bdc3c7;
         }
-
+        
         .positive {
             color: #27ae60;
             background-color: #d5f4e6;
         }
-
+        
         .negative {
             color: #e74c3c;
             background-color: #fadbd8;
         }
-
+        
         .neutral {
             color: #f39c12;
             background-color: #fdeaa7;
         }
-
+        
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
-
+        
         .metric-card {
             background: white;
             padding: 15px;
@@ -112,23 +112,23 @@
             text-align: center;
             transition: transform 0.2s ease;
         }
-
+        
         .metric-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-
+        
         .metric-value {
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
         }
-
+        
         .metric-label {
             color: #7f8c8d;
             font-size: 14px;
         }
-
+        
         .decision-box {
             padding: 20px;
             border-radius: 8px;
@@ -137,117 +137,42 @@
             font-size: 18px;
             font-weight: bold;
         }
-
+        
         .excellent { background-color: #d5f4e6; color: #27ae60; border: 2px solid #27ae60; }
         .good { background-color: #dff0d8; color: #3c763d; border: 2px solid #3c763d; }
         .fair { background-color: #fdeaa7; color: #856404; border: 2px solid #856404; }
         .poor { background-color: #fadbd8; color: #a94442; border: 2px solid #a94442; }
-
+        
         .summary-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-
+        
         .summary-table th, .summary-table td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
+        
         .summary-table th {
             background-color: #3498db;
             color: white;
         }
-
+        
         .summary-table tr:nth-child(even) {
             background-color: #f8f9fa;
-        }
-
-        .export-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .export-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s;
-        }
-
-        .export-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .pdf-btn { background: #e74c3c; color: white; }
-        .json-btn { background: #3498db; color: white; }
-        .print-btn { background: #95a5a6; color: white; }
-        .save-btn { background: #f39c12; color: white; }
-
-        .saved-analysis {
-            background: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-
-        .saved-analysis h4 {
-            margin: 0 0 10px 0;
-            color: #2c3e50;
-        }
-
-        .saved-analysis-meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .saved-analysis-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .load-btn {
-            background: #27ae60;
-            color: white;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .delete-btn {
-            background: #e74c3c;
-            color: white;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        @media print {
-            .no-print { display: none !important; }
-            .container { box-shadow: none; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🏠 Rental Property Investment Calculator</h1>
-
-        <div style="text-align: center; margin-bottom: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px;" class="no-print">
+        
+n        <div style="text-align: center; margin-bottom: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
             <a href="area-investment-predictor.html" style="background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%); color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">📈 Area Investment Predictor</a>
             <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">Analyze market momentum and predict investment opportunities</p>
         </div>
-
         <!-- Property Information -->
         <div class="section">
             <h2>Property Information</h2>
@@ -370,7 +295,7 @@
                     <input type="number" id="insurance" placeholder="100" oninput="calculateAll()">
                 </div>
             </div>
-
+            
             <div class="row">
                 <div>
                     <label>HOA Fees ($/month):</label>
@@ -385,7 +310,7 @@
                     <input type="number" id="mgmtFee" class="calculated" readonly>
                 </div>
             </div>
-
+            
             <div class="row">
                 <div>
                     <label>Maintenance Reserve (%):</label>
@@ -400,7 +325,7 @@
                     <input type="number" id="vacancyPercent" placeholder="6" oninput="calculateAll()">
                 </div>
             </div>
-
+            
             <div class="row">
                 <div>
                     <label>Vacancy Reserve ($):</label>
@@ -503,23 +428,6 @@
                 Enter property details to see recommendation
             </div>
         </div>
-
-        <!-- Save/Export Options -->
-        <div class="section no-print" id="exportSection" style="display: none;">
-            <h2>💾 Save & Export Analysis</h2>
-            <div class="export-buttons">
-                <button onclick="exportToPDF()" class="export-btn pdf-btn">📄 Save as PDF</button>
-                <button onclick="exportToJSON()" class="export-btn json-btn">💾 Export Data (JSON)</button>
-                <button onclick="printAnalysis()" class="export-btn print-btn">🖨️ Print Analysis</button>
-                <button onclick="saveToLocalStorage()" class="export-btn save-btn">💿 Save Locally</button>
-            </div>
-        </div>
-
-        <!-- Saved Analyses -->
-        <div class="section no-print" id="savedAnalyses" style="display: none;">
-            <h2>📂 Saved Analyses</h2>
-            <div id="savedList"></div>
-        </div>
     </div>
 
     <script>
@@ -531,7 +439,7 @@
             const loanTerm = parseFloat(document.getElementById('loanTerm').value) || 30;
             const closingCosts = parseFloat(document.getElementById('closingCosts').value) || 0;
             const initialRepairs = parseFloat(document.getElementById('initialRepairs').value) || 0;
-
+            
             const monthlyRent = parseFloat(document.getElementById('monthlyRent').value) || 0;
             const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
             const propertyTaxes = parseFloat(document.getElementById('propertyTaxes').value) || 0;
@@ -551,9 +459,9 @@
             const monthlyRate = (interestRate / 100) / 12;
             const numPayments = loanTerm * 12;
             let mortgagePayment = 0;
-
+            
             if (monthlyRate > 0 && numPayments > 0) {
-                mortgagePayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+                mortgagePayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
                                 (Math.pow(1 + monthlyRate, numPayments) - 1);
             }
 
@@ -562,8 +470,8 @@
             const mgmtFee = monthlyRent * (mgmtPercent / 100);
             const maintenance = monthlyRent * (maintenancePercent / 100);
             const vacancy = monthlyRent * (vacancyPercent / 100);
-
-            const totalExpenses = mortgagePayment + propertyTaxes + insurance + hoaFees +
+            
+            const totalExpenses = mortgagePayment + propertyTaxes + insurance + hoaFees + 
                                 mgmtFee + maintenance + vacancy + otherExpenses;
             const cashFlow = totalIncome - totalExpenses;
 
@@ -586,7 +494,7 @@
             document.getElementById('maintenance').value = maintenance.toFixed(2);
             document.getElementById('vacancy').value = vacancy.toFixed(2);
             document.getElementById('totalExpenses').value = totalExpenses.toFixed(2);
-
+            
             // Update cash flow with color coding
             const cashFlowField = document.getElementById('cashFlow');
             cashFlowField.value = cashFlow.toFixed(2);
@@ -595,33 +503,33 @@
             // Update metrics
             document.getElementById('onePercentRule').textContent = onePercentRule.toFixed(2) + '%';
             document.getElementById('onePercentStatus').textContent = onePercentRule >= 1.0 ? '✅ Meets Rule' : '❌ Below Rule';
-
+            
             document.getElementById('capRate').textContent = capRate.toFixed(2) + '%';
-            document.getElementById('capRate').className = 'metric-value ' +
+            document.getElementById('capRate').className = 'metric-value ' + 
                 (capRate >= 8 ? 'positive' : capRate >= 6 ? 'neutral' : 'negative');
-
+            
             document.getElementById('cashOnCash').textContent = cashOnCash.toFixed(2) + '%';
-            document.getElementById('cashOnCash').className = 'metric-value ' +
+            document.getElementById('cashOnCash').className = 'metric-value ' + 
                 (cashOnCash >= 8 ? 'positive' : cashOnCash >= 5 ? 'neutral' : 'negative');
-
+            
             document.getElementById('dscr').textContent = dscr.toFixed(2);
-            document.getElementById('dscr').className = 'metric-value ' +
+            document.getElementById('dscr').className = 'metric-value ' + 
                 (dscr >= 1.25 ? 'positive' : dscr >= 1.0 ? 'neutral' : 'negative');
 
             // Update annual summary
             document.getElementById('monthlyGrossIncome').textContent = '$' + totalIncome.toFixed(0);
             document.getElementById('annualGrossIncome').textContent = '$' + (totalIncome * 12).toFixed(0);
-
+            
             const operatingExpenses = totalExpenses - mortgagePayment;
             document.getElementById('monthlyTotalExpenses').textContent = '$' + operatingExpenses.toFixed(0);
             document.getElementById('annualTotalExpenses').textContent = '$' + (operatingExpenses * 12).toFixed(0);
-
+            
             document.getElementById('monthlyNOI').textContent = '$' + noi.toFixed(0);
             document.getElementById('annualNOI').textContent = '$' + (noi * 12).toFixed(0);
-
+            
             document.getElementById('monthlyMortgage').textContent = '$' + mortgagePayment.toFixed(0);
             document.getElementById('annualMortgage').textContent = '$' + (mortgagePayment * 12).toFixed(0);
-
+            
             document.getElementById('monthlyCashFlow').textContent = '$' + cashFlow.toFixed(0);
             document.getElementById('annualCashFlow').textContent = '$' + (cashFlow * 12).toFixed(0);
 
@@ -657,249 +565,11 @@
             const decisionBox = document.getElementById('decisionBox');
             decisionBox.textContent = recommendation + ` (Score: ${score}/100)`;
             decisionBox.className = 'decision-box ' + className;
-
-            // Show export section
-            if (purchasePrice > 0 && monthlyRent > 0) {
-                document.getElementById('exportSection').style.display = 'block';
-            }
         }
 
-        // Export and Save Functions
-        function getCurrentAnalysisData() {
-            const address = document.getElementById('address').value || 'Property Analysis';
-            return {
-                timestamp: new Date().toISOString(),
-                property: {
-                    address: address,
-                    propertyType: document.getElementById('propertyType').value,
-                    yearBuilt: document.getElementById('yearBuilt').value,
-                    sqft: document.getElementById('sqft').value,
-                    bedrooms: document.getElementById('bedrooms').value,
-                    bathrooms: document.getElementById('bathrooms').value
-                },
-                financial: {
-                    purchasePrice: document.getElementById('purchasePrice').value,
-                    downPaymentPercent: document.getElementById('downPaymentPercent').value,
-                    downPaymentAmount: document.getElementById('downPaymentAmount').value,
-                    interestRate: document.getElementById('interestRate').value,
-                    loanTerm: document.getElementById('loanTerm').value,
-                    loanAmount: document.getElementById('loanAmount').value,
-                    closingCosts: document.getElementById('closingCosts').value,
-                    initialRepairs: document.getElementById('initialRepairs').value,
-                    totalInvestment: document.getElementById('totalInvestment').value
-                },
-                income: {
-                    monthlyRent: document.getElementById('monthlyRent').value,
-                    otherIncome: document.getElementById('otherIncome').value,
-                    totalIncome: document.getElementById('totalIncome').value
-                },
-                expenses: {
-                    mortgagePayment: document.getElementById('mortgagePayment').value,
-                    propertyTaxes: document.getElementById('propertyTaxes').value,
-                    insurance: document.getElementById('insurance').value,
-                    hoaFees: document.getElementById('hoaFees').value,
-                    mgmtPercent: document.getElementById('mgmtPercent').value,
-                    mgmtFee: document.getElementById('mgmtFee').value,
-                    maintenancePercent: document.getElementById('maintenancePercent').value,
-                    maintenance: document.getElementById('maintenance').value,
-                    vacancyPercent: document.getElementById('vacancyPercent').value,
-                    vacancy: document.getElementById('vacancy').value,
-                    otherExpenses: document.getElementById('otherExpenses').value,
-                    totalExpenses: document.getElementById('totalExpenses').value
-                },
-                results: {
-                    cashFlow: document.getElementById('cashFlow').value,
-                    onePercentRule: document.getElementById('onePercentRule').textContent,
-                    capRate: document.getElementById('capRate').textContent,
-                    cashOnCash: document.getElementById('cashOnCash').textContent,
-                    dscr: document.getElementById('dscr').textContent,
-                    recommendation: document.getElementById('decisionBox').textContent
-                }
-            };
-        }
-
-        function exportToPDF() {
-            const data = getCurrentAnalysisData();
-            const printContent = generatePrintableReport(data);
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <title>Property Investment Analysis - ${data.property.address}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        .header { text-align: center; margin-bottom: 30px; }
-                        .section { margin-bottom: 25px; }
-                        .section h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
-                        .row { display: flex; justify-content: space-between; margin-bottom: 10px; }
-                        .label { font-weight: bold; }
-                        .value { color: #666; }
-                        .results { background: #f8f9fa; padding: 15px; border-radius: 8px; }
-                        .recommendation { background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 20px; font-weight: bold; text-align: center; }
-                        @media print { .no-print { display: none; } }
-                    </style>
-                </head>
-                <body>
-                    ${printContent}
-                    <div class="no-print" style="text-align: center; margin-top: 30px;">
-                        <button onclick="window.print()" style="background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Print to PDF</button>
-                        <button onclick="window.close()" style="background: #95a5a6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Close</button>
-                    </div>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-        }
-
-        function exportToJSON() {
-            const data = getCurrentAnalysisData();
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `property-analysis-${data.property.address.replace(/[^a-zA-Z0-9]/g, '-')}-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        function printAnalysis() {
-            window.print();
-        }
-
-        function saveToLocalStorage() {
-            const data = getCurrentAnalysisData();
-            const saved = JSON.parse(localStorage.getItem('savedPropertyAnalyses') || '[]');
-            saved.push(data);
-            localStorage.setItem('savedPropertyAnalyses', JSON.stringify(saved));
-            alert('Analysis saved locally!');
-            loadSavedAnalyses();
-        }
-
-        function loadSavedAnalyses() {
-            const saved = JSON.parse(localStorage.getItem('savedPropertyAnalyses') || '[]');
-            if (saved.length > 0) {
-                document.getElementById('savedAnalyses').style.display = 'block';
-                const savedList = document.getElementById('savedList');
-                savedList.innerHTML = saved.map((analysis, index) => `
-                    <div class="saved-analysis">
-                        <h4>${analysis.property.address}</h4>
-                        <div class="saved-analysis-meta">
-                            Saved: ${new Date(analysis.timestamp).toLocaleDateString()} |
-                            Price: $${parseFloat(analysis.financial.purchasePrice || 0).toLocaleString()} |
-                            Cash Flow: $${parseFloat(analysis.results.cashFlow || 0).toLocaleString()}/month
-                        </div>
-                        <div class="saved-analysis-actions">
-                            <button onclick="loadAnalysis(${index})" class="load-btn">Load</button>
-                            <button onclick="deleteAnalysis(${index})" class="delete-btn">Delete</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function loadAnalysis(index) {
-            const saved = JSON.parse(localStorage.getItem('savedPropertyAnalyses') || '[]');
-            const analysis = saved[index];
-            if (analysis) {
-                // Load property data
-                document.getElementById('address').value = analysis.property.address || '';
-                document.getElementById('propertyType').value = analysis.property.propertyType || '';
-                document.getElementById('yearBuilt').value = analysis.property.yearBuilt || '';
-                document.getElementById('sqft').value = analysis.property.sqft || '';
-                document.getElementById('bedrooms').value = analysis.property.bedrooms || '';
-                document.getElementById('bathrooms').value = analysis.property.bathrooms || '';
-
-                // Load financial data
-                document.getElementById('purchasePrice').value = analysis.financial.purchasePrice || '';
-                document.getElementById('downPaymentPercent').value = analysis.financial.downPaymentPercent || '';
-                document.getElementById('interestRate').value = analysis.financial.interestRate || '';
-                document.getElementById('loanTerm').value = analysis.financial.loanTerm || '';
-                document.getElementById('closingCosts').value = analysis.financial.closingCosts || '';
-                document.getElementById('initialRepairs').value = analysis.financial.initialRepairs || '';
-
-                // Load income/expense data
-                document.getElementById('monthlyRent').value = analysis.income.monthlyRent || '';
-                document.getElementById('otherIncome').value = analysis.income.otherIncome || '';
-                document.getElementById('propertyTaxes').value = analysis.expenses.propertyTaxes || '';
-                document.getElementById('insurance').value = analysis.expenses.insurance || '';
-                document.getElementById('hoaFees').value = analysis.expenses.hoaFees || '';
-                document.getElementById('mgmtPercent').value = analysis.expenses.mgmtPercent || '';
-                document.getElementById('maintenancePercent').value = analysis.expenses.maintenancePercent || '';
-                document.getElementById('vacancyPercent').value = analysis.expenses.vacancyPercent || '';
-                document.getElementById('otherExpenses').value = analysis.expenses.otherExpenses || '';
-
-                calculateAll();
-                alert('Analysis loaded successfully!');
-            }
-        }
-
-        function deleteAnalysis(index) {
-            if (confirm('Are you sure you want to delete this analysis?')) {
-                const saved = JSON.parse(localStorage.getItem('savedPropertyAnalyses') || '[]');
-                saved.splice(index, 1);
-                localStorage.setItem('savedPropertyAnalyses', JSON.stringify(saved));
-                loadSavedAnalyses();
-                if (saved.length === 0) {
-                    document.getElementById('savedAnalyses').style.display = 'none';
-                }
-            }
-        }
-
-        function generatePrintableReport(data) {
-            return `
-                <div class="header">
-                    <h1>🏠 Property Investment Analysis</h1>
-                    <h2>${data.property.address}</h2>
-                    <p>Generated on ${new Date(data.timestamp).toLocaleString()}</p>
-                </div>
-
-                <div class="section">
-                    <h2>Property Details</h2>
-                    <div class="row"><span class="label">Address:</span><span class="value">${data.property.address}</span></div>
-                    <div class="row"><span class="label">Type:</span><span class="value">${data.property.propertyType}</span></div>
-                    <div class="row"><span class="label">Year Built:</span><span class="value">${data.property.yearBuilt}</span></div>
-                    <div class="row"><span class="label">Square Footage:</span><span class="value">${data.property.sqft}</span></div>
-                    <div class="row"><span class="label">Bedrooms:</span><span class="value">${data.property.bedrooms}</span></div>
-                    <div class="row"><span class="label">Bathrooms:</span><span class="value">${data.property.bathrooms}</span></div>
-                </div>
-
-                <div class="section">
-                    <h2>Financial Summary</h2>
-                    <div class="row"><span class="label">Purchase Price:</span><span class="value">$${parseFloat(data.financial.purchasePrice || 0).toLocaleString()}</span></div>
-                    <div class="row"><span class="label">Down Payment:</span><span class="value">$${parseFloat(data.financial.downPaymentAmount || 0).toLocaleString()} (${data.financial.downPaymentPercent}%)</span></div>
-                    <div class="row"><span class="label">Loan Amount:</span><span class="value">$${parseFloat(data.financial.loanAmount || 0).toLocaleString()}</span></div>
-                    <div class="row"><span class="label">Interest Rate:</span><span class="value">${data.financial.interestRate}%</span></div>
-                    <div class="row"><span class="label">Total Investment:</span><span class="value">$${parseFloat(data.financial.totalInvestment || 0).toLocaleString()}</span></div>
-                </div>
-
-                <div class="section">
-                    <h2>Cash Flow Analysis</h2>
-                    <div class="row"><span class="label">Monthly Rent:</span><span class="value">$${parseFloat(data.income.monthlyRent || 0).toLocaleString()}</span></div>
-                    <div class="row"><span class="label">Total Monthly Income:</span><span class="value">$${parseFloat(data.income.totalIncome || 0).toLocaleString()}</span></div>
-                    <div class="row"><span class="label">Total Monthly Expenses:</span><span class="value">$${parseFloat(data.expenses.totalExpenses || 0).toLocaleString()}</span></div>
-                    <div class="row"><span class="label">Net Monthly Cash Flow:</span><span class="value">$${parseFloat(data.results.cashFlow || 0).toLocaleString()}</span></div>
-                </div>
-
-                <div class="section results">
-                    <h2>Investment Metrics</h2>
-                    <div class="row"><span class="label">1% Rule:</span><span class="value">${data.results.onePercentRule}</span></div>
-                    <div class="row"><span class="label">Cap Rate:</span><span class="value">${data.results.capRate}</span></div>
-                    <div class="row"><span class="label">Cash-on-Cash Return:</span><span class="value">${data.results.cashOnCash}</span></div>
-                    <div class="row"><span class="label">Debt Service Coverage:</span><span class="value">${data.results.dscr}</span></div>
-                </div>
-
-                <div class="recommendation">
-                    ${data.results.recommendation}
-                </div>
-            `;
-        }
-
-        // Initialize on page load
+        // Initialize calculations when page loads
         window.onload = function() {
             calculateAll();
-            loadSavedAnalyses();
         };
     </script>
 </body>
