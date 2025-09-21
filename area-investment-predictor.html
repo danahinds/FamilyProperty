@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Investment Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e1e1e1;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid #FF6B6B;
+        }
+
+        .form-section {
+            padding: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .input-group.full-width {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="number"], input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus, input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #FF6B6B;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #FF6B6B;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .metric-description {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .score-number {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .score-excellent { color: #4CAF50; }
+        .score-good { color: #2196F3; }
+        .score-fair { color: #FF9800; }
+        .score-poor { color: #f44336; }
+
+        .recommendation {
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .rec-excellent {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 2px solid #4CAF50;
+        }
+
+        .rec-good {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #2196F3;
+        }
+
+        .rec-fair {
+            background: #fff3e0;
+            color: #ef6c00;
+            border: 2px solid #FF9800;
+        }
+
+        .rec-poor {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+
+        .factor-analysis {
+            margin-top: 30px;
+        }
+
+        .factor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #e1e1e1;
+        }
+
+        .factor-positive { border-left-color: #4CAF50; }
+        .factor-neutral { border-left-color: #FF9800; }
+        .factor-negative { border-left-color: #f44336; }
+
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #FF6B6B;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 Area Investment Predictor</h1>
+            <p>Analyze market momentum and predict investment opportunities</p>
+        </div>
+
+        <div class="nav-tabs">
+            <a href="index.html" class="tab">Property Calculator</a>
+            <button class="tab active">Area Predictor</button>
+        </div>
+
+        <div class="form-section">
+            <div class="input-group full-width">
+                <div>
+                    <label for="metroArea">Metropolitan Area / CBSA</label>
+                    <select id="metroArea" onchange="updateAreaData()">
+                        <option value="">Select a metro area...</option>
+                        <option value="12060">Atlanta-Sandy Springs-Alpharetta, GA</option>
+                        <option value="41860">San Francisco-Oakland-Berkeley, CA</option>
+                        <option value="35620">New York-Newark-Jersey City, NY-NJ-PA</option>
+                        <option value="31080">Los Angeles-Long Beach-Anaheim, CA</option>
+                        <option value="16980">Chicago-Naperville-Elgin, IL-IN-WI</option>
+                        <option value="19100">Dallas-Fort Worth-Arlington, TX</option>
+                        <option value="26420">Houston-The Woodlands-Sugar Land, TX</option>
+                        <option value="33460">Minneapolis-St. Paul-Bloomington, MN-WI</option>
+                        <option value="38060">Phoenix-Mesa-Chandler, AZ</option>
+                        <option value="42660">Seattle-Tacoma-Bellevue, WA</option>
+                        <option value="40900">Sacramento-Roseville-Folsom, CA</option>
+                        <option value="36740">Orlando-Kissimmee-Sanford, FL</option>
+                        <option value="45300">Tampa-St. Petersburg-Clearwater, FL</option>
+                        <option value="12580">Baltimore-Columbia-Towson, MD</option>
+                        <option value="17460">Cleveland-Elyria, OH</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label for="population">Metro Population</label>
+                    <input type="number" id="population" placeholder="e.g., 6,020,000" readonly>
+                </div>
+                <div>
+                    <label for="currentPermits">Recent Monthly Permits</label>
+                    <input type="number" id="currentPermits" placeholder="e.g., 3500">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label for="permitsTrend">12-Month Permit Growth (%)</label>
+                    <input type="number" id="permitsTrend" step="0.1" placeholder="e.g., 15.5">
+                </div>
+                <div>
+                    <label for="mfShare">Multifamily Share (%)</label>
+                    <input type="number" id="mfShare" step="0.1" placeholder="e.g., 35.0">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label for="priceGrowth">Median Price Growth (%)</label>
+                    <input type="number" id="priceGrowth" step="0.1" placeholder="e.g., 8.2">
+                </div>
+                <div>
+                    <label for="jobGrowth">Employment Growth (%)</label>
+                    <input type="number" id="jobGrowth" step="0.1" placeholder="e.g., 3.1">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label for="supplyMonths">Months of Supply</label>
+                    <input type="number" id="supplyMonths" step="0.1" placeholder="e.g., 2.8">
+                </div>
+                <div>
+                    <label for="rentGrowth">Rent Growth (%)</label>
+                    <input type="number" id="rentGrowth" step="0.1" placeholder="e.g., 5.5">
+                </div>
+            </div>
+
+            <button class="analyze-btn" onclick="analyzeMarket()">
+                Analyze Market Investment Potential
+            </button>
+
+            <div class="results" id="results">
+                <div class="score-display">
+                    <div class="score-number" id="spikeScore">0</div>
+                    <div>Market Spike Score</div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Momentum Score</div>
+                        <div class="metric-value" id="momentumScore">0</div>
+                        <div class="metric-description">Permit growth acceleration</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Market Heat</div>
+                        <div class="metric-value" id="marketHeat">0</div>
+                        <div class="metric-description">Price vs supply dynamics</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Supply Constraint</div>
+                        <div class="metric-value" id="supplyScore">0</div>
+                        <div class="metric-description">Inventory tightness</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Demand Strength</div>
+                        <div class="metric-value" id="demandScore">0</div>
+                        <div class="metric-description">Job growth + population</div>
+                    </div>
+                </div>
+
+                <div class="recommendation" id="recommendation">
+                </div>
+
+                <div class="factor-analysis">
+                    <h3>Key Investment Factors</h3>
+                    <div id="factorsList">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const metroData = {
+            "12060": { name: "Atlanta-Sandy Springs-Alpharetta, GA", population: 6020000 },
+            "41860": { name: "San Francisco-Oakland-Berkeley, CA", population: 4749000 },
+            "35620": { name: "New York-Newark-Jersey City, NY-NJ-PA", population: 20140000 },
+            "31080": { name: "Los Angeles-Long Beach-Anaheim, CA", population: 13200000 },
+            "16980": { name: "Chicago-Naperville-Elgin, IL-IN-WI", population: 9618000 },
+            "19100": { name: "Dallas-Fort Worth-Arlington, TX", population: 7637000 },
+            "26420": { name: "Houston-The Woodlands-Sugar Land, TX", population: 7123000 },
+            "33460": { name: "Minneapolis-St. Paul-Bloomington, MN-WI", population: 3690000 },
+            "38060": { name: "Phoenix-Mesa-Chandler, AZ", population: 4946000 },
+            "42660": { name: "Seattle-Tacoma-Bellevue, WA", population: 4019000 },
+            "40900": { name: "Sacramento-Roseville-Folsom, CA", population: 2397000 },
+            "36740": { name: "Orlando-Kissimmee-Sanford, FL", population: 2608000 },
+            "45300": { name: "Tampa-St. Petersburg-Clearwater, FL", population: 3219000 },
+            "12580": { name: "Baltimore-Columbia-Towson, MD", population: 2844000 },
+            "17460": { name: "Cleveland-Elyria, OH", population: 2048000 }
+        };
+
+        function updateAreaData() {
+            const metroId = document.getElementById('metroArea').value;
+            if (metroId && metroData[metroId]) {
+                document.getElementById('population').value = metroData[metroId].population.toLocaleString();
+            }
+        }
+
+        function analyzeMarket() {
+            const metroArea = document.getElementById('metroArea').value;
+            const population = parseFloat(document.getElementById('population').value.replace(/,/g, '')) || 0;
+            const currentPermits = parseFloat(document.getElementById('currentPermits').value) || 0;
+            const permitsTrend = parseFloat(document.getElementById('permitsTrend').value) || 0;
+            const mfShare = parseFloat(document.getElementById('mfShare').value) || 0;
+            const priceGrowth = parseFloat(document.getElementById('priceGrowth').value) || 0;
+            const jobGrowth = parseFloat(document.getElementById('jobGrowth').value) || 0;
+            const supplyMonths = parseFloat(document.getElementById('supplyMonths').value) || 0;
+            const rentGrowth = parseFloat(document.getElementById('rentGrowth').value) || 0;
+
+            if (!metroArea) {
+                alert('Please select a metropolitan area');
+                return;
+            }
+
+            // Calculate scores based on the Python algorithm logic
+            const permitsPerCapita = (currentPermits * 12 / population) * 10000;
+
+            // Momentum Score (40% weight) - based on permit growth
+            const momentumScore = Math.min(100, Math.max(0,
+                (permitsTrend + 20) * 2.5  // Scale -20% to +60% growth to 0-100
+            ));
+
+            // Market Heat Score - price growth vs supply
+            const heatScore = Math.min(100, Math.max(0,
+                (priceGrowth * 5) + (6 - supplyMonths) * 10 + (rentGrowth * 3)
+            ));
+
+            // Supply Constraint Score - lower supply = higher score
+            const supplyScore = Math.min(100, Math.max(0,
+                (6 - supplyMonths) * 20 + (mfShare > 30 ? 20 : 0)
+            ));
+
+            // Demand Score - job growth and permits per capita
+            const demandScore = Math.min(100, Math.max(0,
+                (jobGrowth * 15) + (permitsPerCapita > 50 ? 30 : permitsPerCapita * 0.6)
+            ));
+
+            // Overall Spike Score
+            const spikeScore = Math.round(
+                (momentumScore * 0.4) +
+                (heatScore * 0.25) +
+                (supplyScore * 0.2) +
+                (demandScore * 0.15)
+            );
+
+            // Update display
+            document.getElementById('spikeScore').textContent = spikeScore;
+            document.getElementById('momentumScore').textContent = Math.round(momentumScore);
+            document.getElementById('marketHeat').textContent = Math.round(heatScore);
+            document.getElementById('supplyScore').textContent = Math.round(supplyScore);
+            document.getElementById('demandScore').textContent = Math.round(demandScore);
+
+            // Color coding
+            const scoreElement = document.getElementById('spikeScore');
+            let scoreClass, recommendation, recClass;
+
+            if (spikeScore >= 80) {
+                scoreClass = 'score-excellent';
+                recommendation = '🚀 EXCELLENT OPPORTUNITY - Strong market momentum with multiple growth drivers!';
+                recClass = 'rec-excellent';
+            } else if (spikeScore >= 65) {
+                scoreClass = 'score-good';
+                recommendation = '✅ GOOD INVESTMENT MARKET - Solid fundamentals with growth potential';
+                recClass = 'rec-good';
+            } else if (spikeScore >= 45) {
+                scoreClass = 'score-fair';
+                recommendation = '⚠️ FAIR MARKET - Some positive signals but monitor closely';
+                recClass = 'rec-fair';
+            } else {
+                scoreClass = 'score-poor';
+                recommendation = '🔴 CHALLENGING MARKET - Weak indicators suggest caution';
+                recClass = 'rec-poor';
+            }
+
+            scoreElement.className = `score-number ${scoreClass}`;
+            document.getElementById('recommendation').textContent = recommendation;
+            document.getElementById('recommendation').className = `recommendation ${recClass}`;
+
+            // Generate factor analysis
+            const factors = [];
+
+            if (permitsTrend > 10) factors.push({text: `Strong permit growth (${permitsTrend}%)`, type: 'positive'});
+            else if (permitsTrend < 0) factors.push({text: `Declining permits (${permitsTrend}%)`, type: 'negative'});
+
+            if (supplyMonths < 3) factors.push({text: `Tight inventory (${supplyMonths} months)`, type: 'positive'});
+            else if (supplyMonths > 6) factors.push({text: `High inventory (${supplyMonths} months)`, type: 'negative'});
+
+            if (jobGrowth > 2) factors.push({text: `Strong job growth (${jobGrowth}%)`, type: 'positive'});
+            else if (jobGrowth < 0) factors.push({text: `Job market decline (${jobGrowth}%)`, type: 'negative'});
+
+            if (mfShare > 35) factors.push({text: `High multifamily activity (${mfShare}%)`, type: 'positive'});
+
+            if (priceGrowth > 5) factors.push({text: `Rapid price appreciation (${priceGrowth}%)`, type: 'positive'});
+            else if (priceGrowth < 0) factors.push({text: `Price decline (${priceGrowth}%)`, type: 'negative'});
+
+            const factorsList = document.getElementById('factorsList');
+            factorsList.innerHTML = '';
+            factors.forEach(factor => {
+                const div = document.createElement('div');
+                div.className = `factor-item factor-${factor.type}`;
+                div.innerHTML = `
+                    <span>${factor.text}</span>
+                    <span>${factor.type === 'positive' ? '✅' : factor.type === 'negative' ? '❌' : '⚠️'}</span>
+                `;
+                factorsList.appendChild(div);
+            });
+
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
